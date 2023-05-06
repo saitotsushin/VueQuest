@@ -27,8 +27,8 @@ import fontUrl from './fonts/my-font.woff'
 <style>
 @font-face {
   font-family: 'MyFont';
-  src: url('./assets/fonts/my-font.woff2') format('woff2'),
-       url('./assets/fonts/my-font.woff') format('woff');
+  src: url('/fonts/my-font.woff2') format('woff2'),
+       url('/fonts/my-font.woff') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
