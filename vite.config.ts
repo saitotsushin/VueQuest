@@ -13,10 +13,10 @@ export default defineConfig({
         main: resolve(__dirname, 'index.html'),
         404: resolve(__dirname, '404.html'),
       },
-      output: {
-        dir: 'dist',
-        assetFileNames: 'assets/[name][extname]'
-      }
+      // output: {
+      //   dir: 'dist',
+      //   assetFileNames: 'assets/[name][extname]'
+      // }
     }
   }
 })
