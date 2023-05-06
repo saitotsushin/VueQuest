@@ -1,13 +1,18 @@
 import { defineConfig } from 'vite'
+import { resolve } from "path";
 import vue from '@vitejs/plugin-vue'
-
-// https://github.com/vuetifyjs/vuetify-loader/tree/next/packages/vite-plugin
-import vuetify from 'vite-plugin-vuetify'
-
-// https://vitejs.dev/config/
+// const path = require('path');
 export default defineConfig({
-  plugins: [
-		vue(),
-		vuetify({ autoImport: true }),
-	],
+  base: process.env.GITHUB_PAGES  // この行を追加
+    ? "TouchNumb"            // この行を追加
+    : "./",                     // この行を追加
+  plugins: [vue()],
+  build: {
+    rollupOptions: {
+      input: {
+        main: resolve(__dirname, 'index.html'),
+        404: resolve(__dirname, '404.html'),
+      }
+    }
+  }
 })
