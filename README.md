@@ -19,6 +19,10 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
 
 # memo
 ## デプロイなど
+https://saitotsushin.github.io/VueQuest/
+### 参考
+https://dev.classmethod.jp/articles/github-pages-by-actions/
+### コマンド
 `npm run build`→ source treeでpush → github Actionsで`/dist`が自動でビルドされる
 ## リロード対策のため404ページを準備する
 https://qiita.com/xrxoxcxox/items/9e4e08ae01262b8fc5f7

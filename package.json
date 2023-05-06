@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc && vite build --base=/TouchNumb/",
+    "build": "vue-tsc && vite build --base=/VueQuest/",
     "preview": "vite preview",
     "deploy": "gh-pages -d dist"
   },
