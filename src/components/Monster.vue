@@ -24,7 +24,7 @@ const emit = defineEmits([
     <!-- <img src="/Monsters/1.png" alt="Sample Image"> -->
     <div v-for="item in props.MemberList" class="Monster">
       <!-- <div class="Name">{{ item.MonsterId }}</div> -->
-      <img :src="`/Monsters/${item.MonsterId}.png`" :alt="`${item.Status.Name}`">
+      <img :src="`/assets/Monsters/${item.MonsterId}.png`" :alt="`${item.Status.Name}`">
     </div>
   </div>
 </template>
