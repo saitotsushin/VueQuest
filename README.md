@@ -31,3 +31,8 @@ https://qiita.com/xrxoxcxox/items/9e4e08ae01262b8fc5f7
 misaki_ttf_2021-05-05
 を変換
 https://jajaaan.co.jp/growth-hack/speed-up/web-font-remove/
+
+# vuex
+https://zenn.dev/ryo_kawamata/articles/intoroduce-vuex4-with-composition-api
+`vuex-shim.d.ts`は下記を見て設置した。
+https://vuex.vuejs.org/guide/typescript-support.html

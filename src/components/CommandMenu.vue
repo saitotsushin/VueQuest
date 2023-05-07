@@ -1,15 +1,18 @@
 <script setup lang="ts">
-const emit = defineEmits([
-  'touch-panel'
-]);
+// import { useStore } from 'vuex'
+import { computed } from 'vue'
+import { useStore } from '../store'
 
+const store = useStore()
+
+// const count = store.state.count // typed as number
+
+const count = computed(() => store.state.count)
 </script>
 
 <template>
   <div class="CommandList">
-    <div>名前</div>
-    <div @click="$emit('たたかう')">＞たたかう</div>
-    <div @click="$emit('にげる')">　にげる</div>
+    <div>{{ count }}</div>
   </div>
 </template>
 
@@ -17,5 +20,7 @@ const emit = defineEmits([
 .CommandList{
   border: 2px solid #FFF;
   color: #FFF;
+  padding: 1rem;
+  margin-right: 1rem;
 }
 </style>

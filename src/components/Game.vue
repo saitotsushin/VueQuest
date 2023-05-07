@@ -123,7 +123,7 @@ const handleClick = (data:string) => {
         :MemberList="MemberList"
         @touch-panel="PanelCountUp"/>
       <div class="Command">
-        <CommandMenu @clicked="handleClick"/>
+        <CommandMenu/>
         <MessageBox/>
       </div>
     </div>
