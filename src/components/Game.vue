@@ -15,8 +15,8 @@ const ClearTime = ref(0);
 
 interface Item {
   index: number,
+  Name: string,
   Status: {
-    Name: string,
     Enemy: boolean,
     HP: number,
     MP: number,
@@ -32,8 +32,8 @@ interface Item {
 const EnemyMemberList = reactive<Item[]>([
   {
     index: 1,
+    Name: "てきA",
     Status: {
-      Name: "敵１",
       Enemy: true,
       HP: 1,
       MP: 1,
@@ -48,8 +48,8 @@ const EnemyMemberList = reactive<Item[]>([
   },
   {
     index: 2,
+    Name: "てきB",
     Status: {
-      Name: "敵２",
       Enemy: true,
       HP: 2,
       MP: 2,
@@ -64,8 +64,8 @@ const EnemyMemberList = reactive<Item[]>([
   },
   {
     index: 3,
+    Name: "てきC",
     Status: {
-      Name: "敵３",
       Enemy: true,
       HP: 4,
       MP: 4,
@@ -82,8 +82,8 @@ const EnemyMemberList = reactive<Item[]>([
 const MyMemberList = reactive<Item[]>([
   {
     index: 1,
+    Name: "なかまA",
     Status: {
-      Name: "仲間1",
       Enemy: false,
       HP: 1,
       MP: 1,
@@ -98,8 +98,8 @@ const MyMemberList = reactive<Item[]>([
   },
   {
     index: 2,
+    Name: "なかまB",
     Status: {
-      Name: "仲間2",
       Enemy: false,
       HP: 2,
       MP: 2,
@@ -114,8 +114,8 @@ const MyMemberList = reactive<Item[]>([
   },
   {
     index: 3,
+    Name: "なかまC",
     Status: {
-      Name: "仲間3",
       Enemy: true,
       HP: 4,
       MP: 4,
@@ -129,9 +129,35 @@ const MyMemberList = reactive<Item[]>([
     MonsterId: 3
   }
 ]);
-
+interface ToDo {
+  ActedName: string,
+  Power: number,
+  IsAttacked: boolean,
+  IsSkill: boolean,
+  AffectedName: string,
+  IsShow:boolean
+}
+const ToDoMess = reactive<ToDo>(
+  {
+    ActedName: "hoge",
+    Power: 1,
+    IsAttacked: false,
+    IsSkill: false,
+    AffectedName: "hoge",
+    IsShow: false
+  }
+);
+const Command = (_index:number,_select:number) => {
+  if (_index == 0) {
+    Attack(_select);
+  }
+  if (_index == 1) {
+    Skill(_select);
+  }
+}
 const Attack = (_index: number) => {
-  let power = MyMemberList[0].Status.AttackPower;
+  let ActedMonster = MyMemberList[0];
+  let power = ActedMonster.Status.AttackPower;
   let DamagedMonster = EnemyMemberList[_index];
   let HP = DamagedMonster.Status.HP;
   let NokoriHP = HP - power;
@@ -151,6 +177,17 @@ const Attack = (_index: number) => {
     }
   }, 1000);
 
+  ToDoMess.ActedName = ActedMonster.Name;
+  ToDoMess.Power = power;
+  ToDoMess.AffectedName = DamagedMonster.Name;
+  ToDoMess.IsShow = true;
+}
+const Skill = (_index: number) => {
+  let ActedMonster = MyMemberList[0];
+  let power = ActedMonster.Status.AttackPower;
+  for (var i = 0; i < EnemyMemberList.length; i++){
+    Attack(i);
+  }
 }
 </script>
 <template>
@@ -161,8 +198,8 @@ const Attack = (_index: number) => {
       <Monster
         :MemberList="EnemyMemberList"/>
       <div class="Command">
-        <CommandMenu @touch-command="Attack"/>
-        <MessageBox/>
+        <CommandMenu @touch-command="Command" :ToDoMess="ToDoMess"/>
+        <MessageBox :ToDoMess="ToDoMess"/>
       </div>
     </div>
   </div>

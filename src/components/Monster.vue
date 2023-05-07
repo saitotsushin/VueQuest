@@ -3,9 +3,7 @@ import { defineEmits } from 'vue'
 
 interface Item {
   index: number,
-  Status: {
-    Name: string,
-  },
+  Name: string,
   Effect: {
     IsDamaged: boolean,
     IsDead: boolean
@@ -31,7 +29,7 @@ const emit = defineEmits([
           IsDamaged: item.Effect.IsDamaged,
           IsDead: item.Effect.IsDead,
         }">
-        <img :src="`./images/Monsters/${item.MonsterId}.png`" :alt="`${item.Status.Name}`">
+        <img :src="`./images/Monsters/${item.MonsterId}.png`" :alt="`${item.Name}`">
       </div>
     </div>
   </div>
@@ -56,7 +54,7 @@ const emit = defineEmits([
   animation: Damaged 0.2s linear infinite;
 }
 .IsDead{
-  opacity: 0;
+  opacity: 0 !important;
 }
 @keyframes Damaged {
   0% {

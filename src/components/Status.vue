@@ -3,8 +3,8 @@ import { defineEmits } from 'vue'
 
 interface Item {
   index: number,
+  Name: string,
   Status: {
-    Name: string,
     Enemy: boolean,
     HP: number,
     MP: number,
@@ -25,7 +25,7 @@ const emit = defineEmits([
 <template>
   <div class="StatuslList">
     <div v-for="item in props.MemberList" class="PanelItem">
-      <div class="Name">{{ item.Status.Name }}</div>
+      <div class="Name">{{ item.Name }}</div>
       <div class="Status">
         <div class="StatusList">
           <div class="StatusName">HP</div>

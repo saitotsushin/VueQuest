@@ -1,19 +1,22 @@
 <script setup lang="ts">
-import { useStore } from '../store'
+interface ToDo {
+  ActedName: string,
+  Power: number,
+  IsAttacked: boolean,
+  IsSkill: boolean,
+  AffectedName: string,
+  IsShow:boolean
+}
 
-const store = useStore()
-const emit = defineEmits([
-  'touch-panel'
-]);
-const increment = () => {
-    store.commit('increment')
-    console.log(store.state.count)
-  }
+const props = defineProps<{
+  ToDoMess: ToDo
+}>()
+
 </script>
 
 <template>
-  <div class="MessageBox" @click="increment">
-    あああああああああああああああああ
+  <div class="MessageBox" :class="{ isShow: ToDoMess.IsShow}">
+    {{ToDoMess.ActedName}}のこうげき。{{ ToDoMess.AffectedName }}に{{ ToDoMess.Power }}のダメージ！
   </div>
 </template>
 
@@ -22,5 +25,9 @@ const increment = () => {
   border: 2px solid #FFF;
   color: #FFF;
   padding: 1rem;
+  display: none;
+}
+.isShow{
+  display: block;
 }
 </style>
