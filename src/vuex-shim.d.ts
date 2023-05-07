@@ -7,7 +7,23 @@ declare module '@vue/runtime-core' {
     count: number
   }
 
+  interface Item {
+    index: number,
+    Status: {
+      Name: string,
+      Enemy: boolean,
+      HP: number,
+      MP: number,
+      Level: number
+    },
+    MonsterId: number
+  }
+  interface MemberList {
+    myArray: Item[]
+  }
+
   interface ComponentCustomProperties {
-    $store: Store<State>
+    // $store: Store<State>,
+    $store: Store<MemberList>
   }
 }
