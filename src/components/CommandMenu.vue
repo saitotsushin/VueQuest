@@ -32,9 +32,9 @@ const props = defineProps<{
   </div>
   <div :class="{ isShow: !ToDoMess.IsShow }" class="SecondCommand">
     <div class="AttackList" v-if="SelectedCommand == 1">
-      <div class="" @click="Command(0,1)">Aにこうげき</div>
-      <div class="" @click="Command(0,2)">Bにこうげき</div>
-      <div class="" @click="Command(0,3)">Cにこうげき</div>
+      <div class="" @click="Command(0,0)">Aにこうげき</div>
+      <div class="" @click="Command(0,1)">Bにこうげき</div>
+      <div class="" @click="Command(0,2)">Cにこうげき</div>
     </div>
     <div class="SkillList" v-if="SelectedCommand == 2">
       <div class="" @click="Command(1,1)">1-3ぜんいんに</div>

@@ -4,14 +4,7 @@ import Status from '../components/Status.vue';
 import Monster from '../components/Monster.vue';
 import CommandMenu from '../components/CommandMenu.vue';
 import MessageBox from '../components/MessageBox.vue';
-
-const NowNumber = ref(1);
-const IsStart = ref(false);
-const IsCountDown = ref(false);
-const IsRetry = ref(false);
-const IsFin = ref(false);
-const IsTimeOut = ref(false);
-const ClearTime = ref(0);
+import jsonData from "../assets/MonsterList.json";
 
 interface Item {
   index: number,
@@ -29,106 +22,11 @@ interface Item {
   },
   MonsterId: number
 }
-const EnemyMemberList = reactive<Item[]>([
-  {
-    index: 1,
-    Name: "てきA",
-    Status: {
-      Enemy: true,
-      HP: 1,
-      MP: 1,
-      Level: 1,
-      AttackPower: 1,
-    },
-    Effect: {
-      IsDamaged: false,
-      IsDead: false     
-    },
-    MonsterId: 1
-  },
-  {
-    index: 2,
-    Name: "てきB",
-    Status: {
-      Enemy: true,
-      HP: 2,
-      MP: 2,
-      Level: 1,
-      AttackPower: 2,
-    },
-    Effect: {
-      IsDamaged: false,
-      IsDead: false          
-    },    
-    MonsterId: 2
-  },
-  {
-    index: 3,
-    Name: "てきC",
-    Status: {
-      Enemy: true,
-      HP: 4,
-      MP: 4,
-      Level: 1,
-      AttackPower: 3,
-    },
-    Effect: {
-      IsDamaged: false,
-      IsDead: false          
-    },    
-    MonsterId: 3
-  }
-]);
-const MyMemberList = reactive<Item[]>([
-  {
-    index: 1,
-    Name: "なかまA",
-    Status: {
-      Enemy: false,
-      HP: 1,
-      MP: 1,
-      Level: 1,
-      AttackPower: 1,
-    },
-    Effect: {
-      IsDamaged: false,
-      IsDead: false         
-    },    
-    MonsterId: 1
-  },
-  {
-    index: 2,
-    Name: "なかまB",
-    Status: {
-      Enemy: false,
-      HP: 2,
-      MP: 2,
-      Level: 1,
-      AttackPower: 2,
-    },
-    Effect: {
-      IsDamaged: false,
-      IsDead: false    
-    },    
-    MonsterId: 2
-  },
-  {
-    index: 3,
-    Name: "なかまC",
-    Status: {
-      Enemy: true,
-      HP: 4,
-      MP: 4,
-      Level: 1,
-      AttackPower: 3,
-    },
-    Effect: {
-      IsDamaged: false,
-      IsDead: false      
-    },
-    MonsterId: 3
-  }
-]);
+
+const MyMemberList = reactive<Item[]>([]);
+
+const EnemyMemberList = reactive<Item[]>([]);
+
 interface ToDo {
   ActedName: string,
   Power: number,
@@ -139,11 +37,11 @@ interface ToDo {
 }
 const ToDoMess = reactive<ToDo>(
   {
-    ActedName: "hoge",
+    ActedName: "",
     Power: 1,
     IsAttacked: false,
     IsSkill: false,
-    AffectedName: "hoge",
+    AffectedName: "",
     IsShow: false
   }
 );
@@ -189,6 +87,44 @@ const Skill = (_index: number) => {
     Attack(i);
   }
 }
+let MyMonsterList = [0, 0, 2];
+let EnemyList = [0, 1, 2];
+const CreateItem = (_id:number,_index:number) => {
+  let MonsterData = jsonData.list[_id];
+  const newItem: Item = { 
+    index: _index,
+    Name: MonsterData.Name,
+    Status: {
+      Enemy: false,
+      HP: MonsterData.Status.HP,
+      MP: MonsterData.Status.MP,
+      Level: MonsterData.Status.Level,
+      AttackPower: MonsterData.Status.AttackPower
+    },
+    Effect: {
+      IsDamaged: false,
+      IsDead: false         
+    },
+    MonsterId: MonsterData.id
+  };
+  return newItem;
+}
+const LoadMonsterData = () => {
+  MyMonsterList.forEach(
+    (id, index) => { 
+      const newItem = CreateItem(id,index);
+      newItem.Status.Enemy = false;
+      MyMemberList.push(newItem);
+     }
+  );
+  EnemyList.forEach(
+    (id,index) => { 
+      const newItem = CreateItem(id,index);
+      EnemyMemberList.push(newItem);
+     }
+  );
+}
+LoadMonsterData();
 </script>
 <template>
   <div>
